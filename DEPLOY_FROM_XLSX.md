@@ -79,7 +79,9 @@ C:\tools\mde-av-exclusion-import\out
 
 This splits the workbook into Windows, macOS, and Linux policy input files.
 
-## Step 6: Create the Upload App Registration
+## Step 6: Global Admin Creates the Upload App Registration
+
+Run this step as a Global Admin or another account that can create app registrations, add Microsoft Graph application permissions, and grant admin consent.
 
 ```powershell
 .\New-MdeXdrGraphUploadApp.ps1 `
@@ -96,6 +98,8 @@ C:\tools\mde-av-exclusion-import\out\mde-xdr-upload-app-private.json
 ```
 
 Keep this file private. It contains the temporary app secret.
+
+If a Global Admin already created the app registration and securely provided `out\mde-xdr-upload-app-private.json`, place that file in the `out` folder and skip this step.
 
 ## Step 7: Preview the Policy Creation
 

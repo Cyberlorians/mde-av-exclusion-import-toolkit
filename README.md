@@ -19,6 +19,8 @@ There are two roles in this workflow:
 
 The operator does **not** need permission to create app registrations if the Global Admin completes Step 3 and gives the operator the generated private app file.
 
+In most environments, the Global Admin runs Step 3 once, then the operator starts at Step 4.
+
 ## Prerequisites
 
 - Windows workstation with PowerShell.
@@ -109,7 +111,15 @@ The operator places it in the same path on the workstation where the import will
 <repo folder>\out\mde-xdr-upload-app-private.json
 ```
 
-After that, the Global Admin does not need to run the remaining import steps.
+If the `out` folder does not exist on the operator workstation, create it first:
+
+```powershell
+New-Item -ItemType Directory -Path .\out -Force
+```
+
+After that, the Global Admin does not need to run the remaining import steps. The operator should not rerun Step 3 unless a new app registration or a new secret is required.
+
+If the private app file is already present at `out\mde-xdr-upload-app-private.json`, skip Step 3 and continue with Step 4.
 
 ## Step 4: Operator Parses the Excel Workbook
 
@@ -166,6 +176,8 @@ out\mde-xdr-upload-app-private.json
 ```
 
 No interactive Graph login is required for this step.
+
+If this step fails with an app registration, client secret, or authorization error, ask the Global Admin to rerun Step 3 and provide a fresh `out\mde-xdr-upload-app-private.json` file.
 
 ## Step 8: Verify in the Defender Portal
 
