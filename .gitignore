@@ -1,0 +1,19 @@
+# Customer/source data
+*.xlsx
+*.xls
+*.xlsm
+*.xml
+
+# Generated output and secrets
+out/
+*.secret.json
+*private*.json
+*client-secret*.json
+
+# PowerShell/editor noise
+*.ps1xml
+*.pssc
+*.psrc
+.vscode/
+.DS_Store
+Thumbs.db
